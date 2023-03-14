@@ -1,0 +1,91 @@
+PREFIX was: <https://was-course.interactions.ics.unisg.ch/farm-ontology#>
+PREFIX hmas: <https://purl.org/hmas/>
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+PREFIX wotsec: <https://www.w3.org/2019/wot/security#>
+PREFIX htv: <http://www.w3.org/2011/http#>
+PREFIX hctl: <https://www.w3.org/2019/wot/hypermedia#>
+PREFIX js: <https://www.w3.org/2019/wot/json-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+INSERT {
+    GRAPH <https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#>
+    {
+        ?farm hmas:contains ?section1.
+		?section1 a td:Thing, was:Section;
+            td:title "Farm Section 1";
+		.
+		?coordinate1 a td:Thing, was:Coordinates.
+		?coordinate1 was:x1 "0"^^xsd:integer.
+		?coordinate1 was:y1 "0"^^xsd:integer.
+		?coordinate1 was:x2 "1"^^xsd:integer.
+		?coordinate1 was:y2 "1"^^xsd:integer.
+		?section1 was:hasCoordinates ?coordinate1.
+		?crop1 a was:Crop, was:Wheat.
+      	?crop1 was:requiredMoistureLevel ?requiredMoistureLevel1.
+      	?requiredMoistureLevel1 was:CropMoistureLevel "120"^^xsd:integer.
+		?section1 was:growsCrop ?crop1.
+
+		?farm hmas:contains ?section2.
+		?section2 a td:Thing, was:Section;
+            td:title "Farm section 2";
+		.
+		?coordinate2 a td:Thing, was:Coordinates.
+		?coordinate2 was:x1 "1"^^xsd:integer.
+		?coordinate2 was:y1 "0"^^xsd:integer.
+		?coordinate2 was:x2 "2"^^xsd:integer.
+		?coordinate2 was:y2 "1"^^xsd:integer.
+		?newSection2 was:hasCoordinates ?coordinate2.
+        ?crop2 a was:Crop, was:Wheat.
+      	?crop2 was:requiredMoistureLevel ?requiredMoistureLevel2.
+      	?requiredMoistureLevel2 was:CropMoistureLevel "120"^^xsd:integer.
+		?newSection2 was:growsCrop ?crop2.
+
+		?farm hmas:contains ?section3.
+		?section3 a td:Thing, was:Section;
+            td:title "Farm section 3";
+		.
+		?coordinate3 a td:Thing, was:Coordinates.
+		?coordinate3 was:x1 "0"^^xsd:integer.
+		?coordinate3 was:y1 "1"^^xsd:integer.
+		?coordinate3 was:x2 "1"^^xsd:integer.
+		?coordinate3 was:y2 "2"^^xsd:integer.
+		?newSection3 was:hasCoordinates ?coordinate3.
+        ?crop3 a was:Crop, was:Corn.
+      	?crop3 was:requiredMoistureLevel ?requiredMoistureLevel3.
+      	?requiredMoistureLevel3 was:CropMoistureLevel "80"^^xsd:integer.
+		?newSection3 was:growsCrop ?crop3.
+
+		?farm hmas:contains ?section4.
+		?section4 a td:Thing, was:Section;
+            td:title "Farm section 4";
+		.
+		?coordinate4 a td:Thing, was:Coordinates.
+		?coordinate4 was:x1 "1"^^xsd:integer.
+		?coordinate4 was:x2 "1"^^xsd:integer.
+		?coordinate4 was:y1 "2"^^xsd:integer.
+		?coordinate4 was:y2 "2"^^xsd:integer.
+		?newSection4 was:hasCoordinates ?coordinate4.
+		?crop4 a was:Crop, was:Corn.
+      	?crop4 was:requiredMoistureLevel ?requiredMoistureLevel4.
+      	?requiredMoistureLevel4 was:CropMoistureLevel "80"^^xsd:integer.
+		?newSection4 was:growsCrop ?crop4.
+    }.
+} WHERE {
+	?farm a was:Farm.
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#landSection-", strUUID())) AS ?newSection1)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#coordinate-", strUUID())) AS ?coordinate1)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#crop-", strUUID())) AS ?crop1)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#requiredMoistureLevel-", strUUID())) AS ?requiredMoistureLevel1)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#landSection-", strUUID())) AS ?newSection2)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#coordinate-", strUUID())) AS ?coordinate2)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#crop-", strUUID())) AS ?crop2)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#requiredMoistureLevel-", strUUID())) AS ?requiredMoistureLevel2)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#landSection-", strUUID())) AS ?newSection3)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#coordinate-", strUUID())) AS ?coordinate3)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#crop-", strUUID())) AS ?crop3)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#requiredMoistureLevel-", strUUID())) AS ?requiredMoistureLevel3)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#landSection-", strUUID())) AS ?newSection4)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#coordinate-", strUUID())) AS ?coordinate4)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#crop-", strUUID())) AS ?crop4)
+  	BIND(IRI(CONCAT("https://sandbox-graphdb.interactions.ics.unisg.ch/was-exercise-3-fabio#requiredMoistureLevel-", strUUID())) AS ?requiredMoistureLevel4)
+}
